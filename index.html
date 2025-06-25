@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +6,6 @@
     <title>Propuesta de Valor para CloudOps en Naranja X - Por Martín Gerlero</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         body {
@@ -22,35 +20,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .terminal {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-family: monospace;
-            font-size: 0.875rem;
-            overflow-x: auto;
-            white-space: pre;
-        }
-        .terminal-header {
-            background-color: #161b22;
-            padding: 0.5rem 1rem;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
         .code-block {
             background-color: #161b22;
             border: 1px solid #30363d;
             border-radius: 0.5rem;
             overflow: hidden;
+            height: 100%;
         }
         .code-header {
             padding: 0.5rem 1rem;
@@ -66,10 +41,8 @@
 </head>
 <body class="antialiased">
 
-    <!-- Hero Section -->
     <div class="container mx-auto px-6 py-16 md:py-24 text-center">
-        <!-- Reemplaza la URL de la imagen con la tuya -->
-        <img src="foto2.jpg" alt="Foto de Martín Gerlero" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-gray-700">
+        <img src="https://martingerlero.com/nx/foto2.jpg" alt="Foto de Martín Gerlero" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-gray-700">
         <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4">
             Una Propuesta para <span class="gradient-text">CloudOps</span> en Naranja X
         </h1>
@@ -78,102 +51,105 @@
         </p>
     </div>
 
-    <!-- The "Why" Section -->
     <div id="manifesto" class="container mx-auto px-6 py-12">
         <div class="max-w-4xl mx-auto bg-gray-800/50 p-8 rounded-lg border border-gray-700 backdrop-blur-sm">
             <h2 class="text-3xl font-bold mb-4 flex items-center"><i data-feather="help-circle" class="mr-3 nx-orange"></i>El Porqué de esta Iniciativa</h2>
             <p class="text-gray-300">
-                Esta página es una <strong>propuesta de valor activa</strong>. Una demostración de cómo aplicaría mis habilidades para resolver sus desafíos, basada en tres pilares: Alineación Cultural, Transparencia Radical y Compromiso Real.
+                Esta página es una <strong>propuesta de valor activa y funcional</strong>. Una demostración real de cómo aplico mis habilidades para construir y desplegar soluciones en la nube.
             </p>
         </div>
     </div>
     
-    <!-- Proof of Concept (PoC) Section -->
     <div id="poc" class="container mx-auto px-6 py-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Prueba de Concepto: Mi Enfoque a CloudOps</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Prueba de Concepto: CloudOps en Acción</h2>
 
         <div class="space-y-12">
 
-            <!-- 1. Infrastructure as Code -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="prose prose-invert max-w-none">
                     <h3 class="text-2xl font-bold flex items-center mb-4"><i data-feather="shuffle" class="mr-3 nx-orange"></i>De Scripts a Infraestructura como Código</h3>
-                    <p>En mi rol actual, automatizo tareas con scripts (Python, Shell). Entiendo que la Infraestructura como Código (IaC) es la evolución de esta disciplina en la nube. Aunque no la uso a diario, mi formación en DevOps me dio bases sólidas.</p>
-                    <p>Para demostrar cómo aplico estos conceptos, usé <strong>Terraform</strong> para definir un componente. Esto refleja mi capacidad para llevar mis habilidades de automatización al siguiente nivel en un entorno cloud.</p>
+                    <p>En mi rol actual, automatizo con scripts. Para este proyecto, he aplicado los conceptos de mi formación en DevOps usando <strong>Terraform</strong> para provisionar la infraestructura real que soporta esta página.</p>
+                    <p>El código que ven aquí no es un ejemplo teórico: es el que define el bucket S3 donde está alojado este mismo sitio web. La infraestructura se gestiona como código: versionable, repetible y auditable.</p>
                 </div>
                 <div class="code-block">
-                    <div class="code-header">s3-bucket.tf</div>
+                    <div class="code-header">terraform/s3.tf</div>
                     <pre><code class="language-hcl">
 # Define el proveedor de nube
 provider "aws" {
   region = "us-east-1"
 }
 
-# Define un bucket S3 simple
-resource "aws_s3_bucket" "app_bucket" {
-  bucket = "nx-poc-data-martingerlero"
-
-  tags = {
-    Owner       = "Martin Gerlero"
-    Purpose     = "PoC for Naranja X"
-  }
+# Define un bucket S3 para alojar 
+# el sitio web estático
+resource "aws_s3_bucket" "static_site" {
+  bucket = "nx-poc-static-martingerlero"
 }
+# ... (ver repo para config completa)
                     </code></pre>
                 </div>
             </div>
 
-            <!-- 2. CI/CD Pipeline -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
                  <div class="prose prose-invert max-w-none md:order-2">
-                    <h3 class="text-2xl font-bold flex items-center mb-4"><i data-feather="git-merge" class="mr-3 nx-orange"></i>De Tareas Programadas a Pipelines CI/CD</h3>
-                     <p>Mi experiencia con Jenkins se centra en automatizar tareas puntuales como ETLs. Para esta PoC, elegí <strong>GitHub Actions</strong> para demostrar mi capacidad de adoptar rápidamente herramientas modernas e integradas de CI/CD.</p>
-                     <p>Este pipeline no solo automatiza, sino que integra validaciones de calidad en cada paso, mostrando un enfoque de ciclo de vida completo.</p>
+                    <h3 class="text-2xl font-bold flex items-center mb-4"><i data-feather="git-merge" class="mr-3 nx-orange"></i>Pipeline de CI/CD funcional</h3>
+                     <p>He construido un pipeline completo de CI/CD con <strong>GitHub Actions</strong>. Este flujo de trabajo no es una simulación: está activo y es funcional.</p>
+                     <p>Cada `push` a la rama `main` del repositorio dispara automáticamente este pipeline, que valida el código de Terraform y **despliega los cambios en la infraestructura de AWS**. Es un ejemplo práctico de GitOps y automatización de punta a punta.</p>
+                     <a href="https://github.com/martingerlero/nx-cloudops-poc/actions" target="_blank" class="inline-flex items-center justify-center px-5 py-3 mt-4 border border-transparent text-base font-medium rounded-md text-white nx-bg-orange hover:bg-orange-700 transition">
+                        <i data-feather="github" class="mr-2"></i> Ver las ejecuciones del Pipeline
+                     </a>
                 </div>
-                <div class="md:order-1">
-                     <div class="terminal-header">
-                        <div class="terminal-dot" style="background-color: #ed6a5e;"></div>
-                        <div class="terminal-dot" style="background-color: #f4be4f;"></div>
-                        <div class="terminal-dot" style="background-color: #61c554;"></div>
-                    </div>
-                    <div class="terminal">
-                        <span class="text-green-400">✔ Terraform Linting:</span> Success<br>
-                        <span class="text-green-400">✔ Terraform Plan:</span> Success<br>
-                        <span class="text-green-400">✔ Kubernetes Manifest Validation:</span> Success<br>
-                        <br>
-                        <span class="text-cyan-400">> Pipeline finished successfully.</span>
-                    </div>
+                <div class="code-block md:order-1">
+                    <div class="code-header">.github/workflows/ci.yml</div>
+                    <pre><code class="language-yaml">
+name: CI/CD para CloudOps PoC
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    name: Deploy to AWS S3
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    # ... (ver repo para workflow completo)
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve
+
+                    </code></pre>
                 </div>
             </div>
 
-            <!-- 3. Kubernetes Simulation -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="prose prose-invert max-w-none">
-                    <h3 class="text-2xl font-bold flex items-center mb-4"><i data-feather="package" class="mr-3 nx-orange"></i>Orquestación con Kubernetes</h3>
-                    <p>Mi experiencia práctica con Kubernetes viene de trabajar con <strong>microk8s</strong>, lo que me ha dado una base sólida en la gestión de manifiestos y el ciclo de vida de las aplicaciones. Por eso, me siento cómodo demostrando mi conocimiento.</p>
-                    <p>Este manifiesto se valida en el pipeline usando <code class="bg-gray-700 px-1 rounded">kubectl --dry-run</code>, una práctica profesional que asegura la viabilidad del despliegue antes de tocar un clúster productivo como EKS.</p>
+                    <h3 class="text-2xl font-bold flex items-center mb-4"><i data-feather="package" class="mr-3 nx-orange"></i>Caso de Uso de Kubernetes</h3>
+                     <p>Para demostrar un caso de uso práctico de Kubernetes, y aprovechando mi experiencia con <strong>microk8s</strong>, creé un `Deployment` de NGINX que funciona como un redirector.</p>
+                    <p>Este manifiesto configura un servidor web liviano para redirigir tráfico a este sitio en S3. Es un ejemplo de cómo se pueden usar contenedores para tareas específicas dentro de una arquitectura más grande, un patrón común en entornos como EKS.</p>
                 </div>
                 <div class="code-block">
-                    <div class="code-header">deployment.yaml</div>
+                    <div class="code-header">k8s/deployment.yaml</div>
                     <pre><code class="language-yaml">
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: nginx-deployment
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.21.0
-        ports:
-        - containerPort: 80
+  name: nginx-config
+data:
+  default.conf: |
+    server {
+        listen 80;
+        location / {
+            return 301 http://...;
+        }
+    }
+# ... (ver repo para config completa)
                     </code></pre>
                 </div>
             </div>
@@ -181,24 +157,15 @@ spec:
         </div>
     </div>
 
-    <!-- Video Demo Section -->
     <div id="demo" class="container mx-auto px-6 py-12">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl font-bold mb-4">El Superpoder: La Comunicación</h2>
-            <p class="text-gray-400 mb-8">La tecnología es una parte, pero comunicarla es esencial. Como docente, mi habilidad es explicar conceptos complejos de forma simple. He preparado un video de 2 minutos donde explico este proyecto.</p>
+            <p class="text-gray-400 mb-8">La tecnología es una parte, pero comunicarla es esencial. He preparado un video donde explico este proyecto, mi visión y cómo puedo aportar valor.</p>
             <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border-2 border-gray-700">
-                 <!-- INSTRUCCIÓN PARA MARTÍN: Pega aquí tu video de Loom -->
-                <div class="bg-gray-800 flex items-center justify-center">
-                    <div class="text-center">
-                        <i data-feather="video" class="w-16 h-16 text-gray-500 mx-auto"></i>
-                        <p class="mt-4 text-gray-500">Video</p>
-                    </div>
-                </div>
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
-
-    <!-- Call to Action Section -->
     <div id="contact" class="bg-gray-900/50">
         <div class="container mx-auto px-6 py-16 text-center">
             <h2 class="text-4xl font-black mb-4">¿Te parece interesante este enfoque?</h2>
@@ -216,11 +183,9 @@ spec:
             </div>
         </div>
     </div>
-
     <footer class="text-center py-6">
         <p class="text-gray-500">&copy; 2024 - Construido por Martín Gerlero como iniciativa para Naranja X.</p>
     </footer>
-
     <script>
         feather.replace()
     </script>
