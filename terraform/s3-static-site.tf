@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "static_site" {
   bucket = "nx-poc-static-martingerlero"
-  
+
   tags = {
     Owner   = "Martin Gerlero"
     Purpose = "Static Website PoC"
@@ -51,7 +51,7 @@ resource "aws_s3_bucket_policy" "public_read" {
       }
     ]
   })
-  
+
   # Esta dependencia asegura que los controles de propiedad se apliquen antes que la política.
   depends_on = [aws_s3_bucket_ownership_controls.static_site_ownership]
 }
