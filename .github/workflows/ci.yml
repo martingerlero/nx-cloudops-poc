@@ -35,6 +35,10 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -out=tfplan
 
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve
+
   k8s-validation:
     name: Validación de Kubernetes
     runs-on: ubuntu-latest
