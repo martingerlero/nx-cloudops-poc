@@ -6,7 +6,7 @@ module "eks" {
   vpc_id          = "tu-vpc-id"
   enable_irsa     = true
 
-  node_groups = {
+  eks_managed_node_groups = {
     default = {
       desired_capacity = 1
       max_capacity     = 1
