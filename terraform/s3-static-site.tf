@@ -30,9 +30,9 @@ resource "aws_s3_bucket_policy" "public_read" {
 }
 
 resource "aws_s3_object" "html_file" {
-  bucket = aws_s3_bucket.static_site.bucket
-  key    = "index.html"
-  source = "../index.html"
+  bucket       = aws_s3_bucket.static_site.bucket
+  key          = "index.html"
+  source       = "../index.html"
   content_type = "text/html"
-  acl    = "public-read"
+  acl          = "public-read"
 }
