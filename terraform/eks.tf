@@ -2,8 +2,8 @@ module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "nx-poc-cluster"
   cluster_version = "1.29"
-  subnet_ids      = ["subnet-0028faeeb77bf2ec2", "subnet-0277e053bc9717af0", "subnet-0b37d6c6eca4a0313"]
-  vpc_id          = "vpc-0b56f10b2ed64aa22"
+  subnet_ids      = ["subnet-01035a3cc4e8c3aea", "subnet-0446eb40da96350f3", "subnet-0e387b6385a098d66", "subnet-0aea721faa5950885", "subnet-0c627f86faa525e81", "subnet-022ee25b627b01583"]
+  vpc_id          = "vpc-057f7248d14054470"
   enable_irsa     = true
 
   eks_managed_node_groups = {
