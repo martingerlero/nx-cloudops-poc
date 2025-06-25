@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "app_bucket" {
   bucket = "nx-poc-data-martingerlero"
 
   tags = {
-    Owner       = "Martin Gerlero"
-    Purpose     = "PoC for Naranja X"
+    Owner   = "Martin Gerlero"
+    Purpose = "PoC for Naranja X"
   }
 }
